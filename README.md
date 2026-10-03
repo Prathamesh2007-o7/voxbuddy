@@ -314,18 +314,6 @@ The Qwen3 4B model is intentionally used as a practical local model for a laptop
 
 Use the file-upload option or allow microphone access for `127.0.0.1` in your browser.
 
-## Roadmap
-
-The weekend submission intentionally keeps the product small. Possible future improvements:
-
-- Saved voice-note history with SQLite
-- Calendar export (`.ics`)
-- Reminders/notifications
-- Speaker labels
-- Better date normalization
-- Model switching from the UI
-- Optional encrypted local storage
-- Marathi/Hindi/English mixed-language UI
 
 ## Hacktoberfest 2026
 
