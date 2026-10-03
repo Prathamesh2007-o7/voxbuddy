@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VoxBuddy — turn private voice notes into clear actions using local open AI." />
+  <title>VoxBuddy — Voice notes into actions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="VoxBuddy home">
+        <span class="brand-mark">V</span>
+        <span>VoxBuddy</span>
+      </a>
+      <div class="privacy-pill"><span class="dot"></span> Local AI · Your audio stays here</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">BUILT FOR A FRIEND</div>
+        <h1>Turn messy voice notes<br /><span>into things you can act on.</span></h1>
+        <p class="hero-copy">Record or upload a voice note. VoxBuddy transcribes it with Whisper and turns it into a summary, tasks, and deadlines — locally.</p>
+      </section>
+
+      <section class="capture-card" aria-label="Audio capture">
+        <div class="capture-top">
+          <div>
+            <div class="section-kicker">01 · CAPTURE</div>
+            <h2>Give VoxBuddy a voice note</h2>
+          </div>
+          <span class="file-limit">Max {{ max_upload_mb }} MB</span>
+        </div>
+
+        <div class="record-area">
+          <button id="recordBtn" class="record-button" type="button">
+            <span class="mic-icon">●</span>
+            <span id="recordLabel">Record voice note</span>
+          </button>
+          <span class="or">or</span>
+          <label class="upload-button">
+            <input id="audioInput" type="file" accept="audio/*,.webm,.m4a,.mp3,.wav,.ogg,.flac" />
+            Choose an audio file
+          </label>
+        </div>
+
+        <div id="recordingStatus" class="recording-status hidden"></div>
+        <div id="selectedFile" class="selected-file hidden"></div>
+
+        <button id="processBtn" class="process-button" type="button" disabled>
+          Analyze voice note <span>→</span>
+        </button>
+
+        <div id="errorBox" class="error-box hidden"></div>
+      </section>
+
+      <section id="loading" class="loading-card hidden">
+        <div class="loader-ring"></div>
+        <div>
+          <strong>Working locally…</strong>
+          <p id="loadingText">Whisper is listening to your voice note.</p>
+        </div>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">02 · UNDERSTAND</div>
+            <h2>Here’s what your note said</h2>
+          </div>
+          <div id="modelBadge" class="model-badge">Local AI</div>
+        </div>
+
+        <div class="result-grid">
+          <article class="result-card summary-card">
+            <div class="card-label">SUMMARY</div>
+            <p id="summaryText" class="summary-text"></p>
+          </article>
+
+          <article class="result-card tasks-card">
+            <div class="card-label">TASKS</div>
+            <div id="taskList" class="task-list"></div>
+          </article>
+
+          <article class="result-card transcript-card">
+            <div class="card-label">TRANSCRIPT · <span id="languageLabel">auto-detected</span></div>
+            <p id="transcriptText" class="transcript-text"></p>
+          </article>
+
+          <article class="result-card notes-card">
+            <div class="card-label">IMPORTANT DETAILS</div>
+            <ul id="notesList" class="notes-list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="how-it-works">
+        <div class="section-kicker">03 · OPEN AI, ON YOUR LAPTOP</div>
+        <h2>Why VoxBuddy is local</h2>
+        <div class="pipeline">
+          <div class="pipeline-step"><span>01</span><strong>Your audio</strong><small>Never uploaded to a cloud AI API</small></div>
+          <div class="arrow">→</div>
+          <div class="pipeline-step"><span>02</span><strong>Whisper</strong><small>Open-source speech recognition</small></div>
+          <div class="arrow">→</div>
+          <div class="pipeline-step"><span>03</span><strong>Qwen3</strong><small>Open-weight local language model</small></div>
+          <div class="arrow">→</div>
+          <div class="pipeline-step"><span>04</span><strong>Actionable note</strong><small>Summary + tasks + details</small></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>VoxBuddy · Built for one real friend</span>
+      <span>Flask · Whisper · Ollama · Qwen3</span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
