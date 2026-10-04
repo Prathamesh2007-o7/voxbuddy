@@ -321,9 +321,6 @@ This project was created for the **Hacktoberfest Weekend DEV Challenge: Build fo
 
 Challenge prompt: build something with open-source AI at its core and solve a real problem for a friend or someone you love.
 
-The weekend challenge requires a new project created during the challenge window and a DEV submission using the challenge tag `#hf26challenge`.
-
-Submission deadline: **October 5, 2026 at 6:59 AM UTC / 12:29 PM IST**.
 
 Official challenge page: https://dev.to/challenges/hacktoberfest-weekend-2026-10-01
 
